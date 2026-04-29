@@ -7,12 +7,17 @@ echo "║        Установка                     ║"
 echo "╚══════════════════════════════════════╝"
 echo ""
 
-# Проверка VS Code
+# Проверка и установка VS Code
 if ! command -v code &> /dev/null; then
-  echo "⚠️  VS Code не найден."
-  echo "   Скачайте и установите: https://code.visualstudio.com"
-  echo "   После установки запустите этот скрипт снова."
-  exit 1
+  echo "⏳ Устанавливаю VS Code..."
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install --cask visual-studio-code
+    # Добавить code в PATH
+    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  else
+    echo "⚠️  Установите VS Code вручную: https://code.visualstudio.com"
+    exit 1
+  fi
 fi
 echo "✓ VS Code найден"
 
