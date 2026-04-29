@@ -29,7 +29,11 @@ export PATH="$PATH:$VSCODE_BIN"
 if ! command -v code &> /dev/null; then
   echo "⏳ Устанавливаю VS Code..."
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    brew install --cask --no-quarantine visual-studio-code
+    echo "⏳ Скачиваю VS Code напрямую..."
+    VS_TMP="$HOME/Downloads/vscode.zip"
+    curl -L "https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal" -o "$VS_TMP"
+    unzip -q "$VS_TMP" -d /Applications/
+    rm "$VS_TMP"
     export PATH="$PATH:$VSCODE_BIN"
   else
     echo "⚠️  Установите VS Code вручную: https://code.visualstudio.com"
