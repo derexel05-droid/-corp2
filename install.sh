@@ -31,7 +31,7 @@ if ! command -v code &> /dev/null; then
   if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "⏳ Скачиваю VS Code напрямую..."
     VS_TMP="$HOME/Downloads/vscode.zip"
-    curl -L "https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal" -o "$VS_TMP"
+    curl -L --retry 3 "https://update.code.visualstudio.com/latest/darwin-universal/stable" -o "$VS_TMP"
     unzip -q "$VS_TMP" -d /Applications/
     rm "$VS_TMP"
     export PATH="$PATH:$VSCODE_BIN"
