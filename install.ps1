@@ -39,7 +39,7 @@ if (Test-Path $InstallDir) {
     git -C $InstallDir pull
 } else {
     Write-Host "⏳ Скачиваю корпорацию..." -ForegroundColor Yellow
-    git clone https://github.com/CronusL-1141/corp2.git $InstallDir
+    git clone https://github.com/derexel05-droid/-corp2.git $InstallDir
 }
 Write-Host "✓ Корпорация скачана" -ForegroundColor Green
 
