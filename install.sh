@@ -16,16 +16,24 @@ if ! command -v code &> /dev/null; then
 fi
 echo "✓ VS Code найден"
 
+# Установка Homebrew (только Mac, если нет)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if ! command -v brew &> /dev/null; then
+    echo "⏳ Устанавливаю Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Добавить brew в PATH для Apple Silicon
+    if [[ -f "/opt/homebrew/bin/brew" ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+  fi
+  echo "✓ Homebrew найден"
+fi
+
 # Проверка Node.js
 if ! command -v node &> /dev/null; then
   echo "⏳ Устанавливаю Node.js..."
   if [[ "$OSTYPE" == "darwin"* ]]; then
-    if command -v brew &> /dev/null; then
-      brew install node
-    else
-      echo "⚠️  Установите Node.js вручную: https://nodejs.org"
-      exit 1
-    fi
+    brew install node
   else
     echo "⚠️  Установите Node.js вручную: https://nodejs.org"
     exit 1
