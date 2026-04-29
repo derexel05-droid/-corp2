@@ -47,7 +47,7 @@ if [ -d "$INSTALL_DIR" ]; then
   git -C "$INSTALL_DIR" pull
 else
   echo "⏳ Скачиваю корпорацию..."
-  git clone https://github.com/CronusL-1141/corp2.git "$INSTALL_DIR"
+  git clone https://github.com/derexel05-droid/-corp2.git "$INSTALL_DIR"
 fi
 echo "✓ Корпорация скачана"
 
